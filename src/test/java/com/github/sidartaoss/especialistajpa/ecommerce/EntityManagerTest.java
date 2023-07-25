@@ -1,0 +1,36 @@
+package com.github.sidartaoss.especialistajpa.ecommerce;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+
+public class EntityManagerTest {
+
+    protected static EntityManagerFactory entityManagerFactory;
+    protected EntityManager entityManager;
+
+    @BeforeAll
+    static void setUpBeforeAll() {
+        entityManagerFactory = Persistence
+                .createEntityManagerFactory("Ecommerce-PU");
+    }
+
+    @BeforeEach
+    void setUp() {
+        entityManager = entityManagerFactory.createEntityManager();
+    }
+
+    @AfterEach
+    void tearDown() {
+        entityManager.close();
+    }
+
+    @AfterAll
+    static void tearDownAfterAll() {
+        entityManagerFactory.close();
+    }
+}
